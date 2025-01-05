@@ -1,0 +1,2 @@
+# NepBot
+Experimental Discord Bot
