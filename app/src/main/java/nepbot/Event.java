@@ -18,22 +18,18 @@ public class Event extends ListenerAdapter{
         String messageLower = message.toLowerCase();
         System.out.println(messageLower);
 
-        Pattern pattern = Pattern.compile("(?=.*nep)(?=.*gay)");
+        Pattern pattern = Pattern.compile("(?=.*n*e*p*)(?=.*g*a*y*)");
         Matcher matcher = pattern.matcher(message);
 
         if (messageLower.contains("nep") && messageLower.contains("gay")) {
-            // Check for negation: if "not" is present between "nep" and "gay", do not trigger the response
             if (messageLower.contains("nep") && messageLower.contains("gay") && messageLower.contains("not")) {
-                // Don't trigger response if "nep" and "gay" are connected by "not"
                 if (messageLower.indexOf("nep") < messageLower.indexOf("not") && messageLower.indexOf("not") < messageLower.indexOf("gay")) {
-                    // If "nep" is followed by "not" and then "gay", ignore the message
                     return;
                 }
             }
-            // If no negation is detected, respond with "WHAT DO YOU MEAN"
             event.getChannel().sendMessage("WHAT DO YOU MEAN??").queue();
         }
-        
+
         else if (messageLower.contains("nep nep")){
             event.getChannel().sendMessage("Nep Nep").queue();
         }
