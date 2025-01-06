@@ -16,17 +16,6 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation libs.junit.jupiter
-
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // This dependency is used by the application.
-    implementation libs.guava
-    
-}
-
-dependencies {
     implementation("net.dv8tion:JDA:5.2.2") { // replace $version with the latest version
       // Optionally disable audio natives to reduce jar size by excluding `opus-java`
       // Gradle DSL:

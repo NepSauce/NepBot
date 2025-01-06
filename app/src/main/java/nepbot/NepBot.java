@@ -12,12 +12,12 @@ import net.dv8tion.jda.api.JDABuilder;
 public class NepBot{
     public static void main(String[] args)
     throws LoginException{
-        String token = "0";
+        String fileName = "Token.txt";
+        String token = tokenReader(fileName);
         JDA jda = JDABuilder.createDefault(token).build();
-        
     }
 
-    public static String fileReader(String fileName){
+    public static String tokenReader(String fileName){
         String token = "";
 
         try{
