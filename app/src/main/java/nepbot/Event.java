@@ -1,8 +1,5 @@
 package nepbot;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.jetbrains.annotations.NotNull;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -16,22 +13,37 @@ public class Event extends ListenerAdapter{
         }
         String message = event.getMessage().getContentRaw();
         String messageLower = message.toLowerCase();
-        System.out.println(messageLower);
 
-        Pattern pattern = Pattern.compile("(?=.*n*e*p*)(?=.*g*a*y*)");
-        Matcher matcher = pattern.matcher(message);
+        if (message.toLowerCase().contains("rot")){
+            onRotReceived(event);
+        }
 
-        if (messageLower.contains("nep") && messageLower.contains("gay")) {
+        else if (messageLower.contains("nep") && messageLower.contains("gay")) {
             if (messageLower.contains("nep") && messageLower.contains("gay") && messageLower.contains("not")) {
                 if (messageLower.indexOf("nep") < messageLower.indexOf("not") && messageLower.indexOf("not") < messageLower.indexOf("gay")) {
                     return;
                 }
             }
-            event.getChannel().sendMessage("WHAT DO YOU MEAN??").queue();
+            onNegativeReceived(event);
         }
 
-        else if (messageLower.contains("nep nep")){
-            event.getChannel().sendMessage("Nep Nep").queue();
+        else if (messageLower.contains("nep")){
+            onNepReceived(event);
         }
     }
+
+    private void onRotReceived(@NotNull MessageReceivedEvent event){
+        event.getChannel().sendMessage("The Rot Consumes.").queue();
+    }
+
+    private void onNepReceived(@NotNull MessageReceivedEvent event){
+        event.getChannel().sendMessage("Nep Nep.").queue();
+    }
+
+    private void onNegativeReceived(@NotNull MessageReceivedEvent event){
+        int random = RandomSeed.RandomGenUsingSeed(30);
+        String statement = NegativeStatement.sayNegative("NegativeStatements.txt", random);
+        event.getChannel().sendMessage(statement).queue();
+    }
+
 }
