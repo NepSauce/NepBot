@@ -11,13 +11,13 @@ public class FileHandler<T>{
 
         try{
             File newFile = new File(fileName);
-            Scanner newReader = new Scanner(newFile);
-            
-            if (newReader.hasNextLine()){
-                token = (T) newReader.nextLine();
-            }
-            else{
-                System.out.println("File Contents Are Empty"); 
+            try (Scanner newReader = new Scanner(newFile)) {
+                if (newReader.hasNextLine()){
+                    token = (T) newReader.nextLine();
+                }
+                else{
+                    System.out.println("File Contents Are Empty"); 
+                }
             }
             
         } 
@@ -34,17 +34,17 @@ public class FileHandler<T>{
 
         try{
             File newFile = new File(fileName);
-            Scanner newReader = new Scanner(newFile);
-            
-            if (lineCount > 0){
-                int randomIndex = RandomSeed.RandomGenUsingSeed(seed);
-                
-                for (int i = 0; i <= randomIndex; i++){
-                    randomLine = (T) newReader.nextLine();
+            try (Scanner newReader = new Scanner(newFile)) {
+                if (lineCount > 0){
+                    int randomIndex = RandomSeed.RandomGenUsingSeed(seed);
+                    
+                    for (int i = 0; i <= randomIndex; i++){
+                        randomLine = (T) newReader.nextLine();
+                    }
                 }
-            }
-            else{
-                System.out.println("File Contents Are Empty");
+                else{
+                    System.out.println("File Contents Are Empty");
+                }
             }
             
         } 
@@ -61,12 +61,11 @@ public class FileHandler<T>{
 
         try {
             File newFile = new File(fileName);
-            Scanner newReader = new Scanner(newFile);
-            
-            // First, count the total number of lines
-            while (newReader.hasNextLine()) {
-                newReader.nextLine();
-                lineCount++;
+            try (Scanner newReader = new Scanner(newFile)) {
+                while (newReader.hasNextLine()) {
+                    newReader.nextLine();
+                    lineCount++;
+                }
             }
         } 
         catch (FileNotFoundException e){

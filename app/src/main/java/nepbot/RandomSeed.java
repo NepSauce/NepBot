@@ -2,7 +2,7 @@ package nepbot;
 
 import java.util.Random;
 
-public class RandomSeed {
+public class RandomSeed{
     public static int RandomGenUsingSeed(int seed){
         Random random = new Random();
         int randomInt = random.nextInt(seed);

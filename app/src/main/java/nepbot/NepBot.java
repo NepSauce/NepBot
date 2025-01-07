@@ -18,6 +18,7 @@ public class NepBot{
         .build();
         jda.getPresence().setActivity(Activity.listening("Thy Mother"));
         jda.addEventListener(new Event());
+        jda.addEventListener(new CommandEvent());
     }
 
 }
