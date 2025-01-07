@@ -15,27 +15,22 @@ public class CommandEvent extends ListenerAdapter{
     public void onMessageReceived(@NotNull MessageReceivedEvent event){
         splitMessage = event.getMessage().getContentRaw().toLowerCase().split(" ");
 
-        if (splitMessage[0].contains("nep")){
-            onNepReceived(event);
+        if (splitMessage[0].contains("!nep") && splitMessage[1].equalsIgnoreCase("dadMode")){
+            onDadReceived(event);
         }
     }
 
-    public void onNepReceived(@NotNull MessageReceivedEvent event){
-        if (splitMessage[1].equalsIgnoreCase("dadBotMode")){
-            if (splitMessage[2].equalsIgnoreCase("true" ) && dadBotMode == false){
-                dadBotMode = true;
-                event.getChannel().sendMessage("`Dad Bot Mode enabled.`").queue();
-            }
-            else if (splitMessage[2].equalsIgnoreCase("false" ) && dadBotMode == true){
-                dadBotMode = false;
-                event.getChannel().sendMessage("`Dad Bot Mode disabled.`").queue();
-            }
-            else{
-                event.getChannel().sendMessage("`Dad Bot Mode is already disabled/enabled.`").queue();
-            }
+    public void onDadReceived(@NotNull MessageReceivedEvent event){
+        if (splitMessage[2].equalsIgnoreCase("true" ) && dadBotMode == false){
+            dadBotMode = true;
+            event.getChannel().sendMessage("`Dad Bot Mode enabled.`").queue();
         }
-        else if (splitMessage[0].equalsIgnoreCase("nep") && splitMessage.length == 1){
-            event.getChannel().sendMessage("Nep Nep").queue();
+        else if (splitMessage[2].equalsIgnoreCase("false" ) && dadBotMode == true){
+            dadBotMode = false;
+            event.getChannel().sendMessage("`Dad Bot Mode disabled.`").queue();
+        }
+        else{
+            event.getChannel().sendMessage("`Dad Bot Mode is already disabled/enabled.`").queue();
         }
     }
 }

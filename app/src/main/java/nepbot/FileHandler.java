@@ -28,6 +28,7 @@ public class FileHandler<T>{
         return token;
     }
 
+    @SuppressWarnings("unchecked")
     public T readRandomSingleLine(String fileName, int seed){
         T randomLine = null;
         int lineCount = getLineCount(fileName);
