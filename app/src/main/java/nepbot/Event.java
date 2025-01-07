@@ -13,6 +13,7 @@ public class Event extends ListenerAdapter{
         }
         String message = event.getMessage().getContentRaw();
         String messageLower = message.toLowerCase();
+        Boolean dadBotMode = false;
 
         if (message.toLowerCase().contains("rot")){
             onRotReceived(event);
