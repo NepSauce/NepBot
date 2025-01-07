@@ -41,7 +41,7 @@ public class Event extends ListenerAdapter{
     }
 
     private void onNegativeReceived(@NotNull MessageReceivedEvent event){
-        int random = RandomSeed.RandomGenUsingSeed(30);
+        int random = RandomSeed.RandomGenUsingSeed(FileHandler.getLineCount("NegativeStatements.txt"));
         String statement = NegativeStatement.sayNegative("NegativeStatements.txt", random);
         event.getChannel().sendMessage(statement).queue();
     }
