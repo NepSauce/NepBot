@@ -22,5 +22,4 @@ public class NepBot{
         jda.addEventListener(new Event());
         jda.addEventListener(new CommandEvent());
     }
-
 }

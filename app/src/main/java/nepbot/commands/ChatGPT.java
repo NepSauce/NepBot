@@ -1,4 +1,6 @@
-package nepbot;
+package nepbot.commands;
+
+import nepbot.FileHandler;
 
 public class ChatGPT{
     public static String generatePrompt(String prompt){

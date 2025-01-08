@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
+
 public class FileHandler<T>{
     @SuppressWarnings("unchecked")
     public T readSingleLine(String fileName){
@@ -29,7 +31,7 @@ public class FileHandler<T>{
     }
 
     @SuppressWarnings("unchecked")
-    public T readRandomSingleLine(String fileName, int seed){
+    public T readRandomSingleLine(String fileName, int randomIndex){
         T randomLine = null;
         int lineCount = getLineCount(fileName);
 
@@ -41,8 +43,6 @@ public class FileHandler<T>{
         try {
             File newFile = new File(fileName);
             try (Scanner newReader = new Scanner(newFile)){
-                int randomIndex = RandomSeed.RandomGenUsingSeed(lineCount);
-
                 for (int i = 0; i < randomIndex; i++){
                     newReader.nextLine(); 
                 }

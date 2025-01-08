@@ -1,5 +1,6 @@
 package nepbot;
 
+
 import java.util.Random;
 
 public class RandomSeed{
