@@ -12,8 +12,9 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 public class NepBot{
     public static void main(String[] args)
     throws LoginException{
-        String fileName = "Token.txt";
-        String token = Token.tokenReader(fileName);
+        String token;
+        FileHandler<String> tokenHandling = new FileHandler<>();
+        token = tokenHandling.readSingleLine("Token.txt");
 
         JDA jda = JDABuilder.createDefault(token)
         .enableIntents(GatewayIntent.MESSAGE_CONTENT)
