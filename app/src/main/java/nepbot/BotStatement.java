@@ -39,4 +39,8 @@ public class BotStatement extends ListenerAdapter{
         String statement = BotStatement.getRandomNegative("PositiveStatements.txt", random);
         event.getChannel().sendMessage(statement).queue();
     }
+
+    public static void onDadReceived(@NotNull MessageReceivedEvent event, String message){
+        event.getChannel().sendMessage(message).queue();
+    }
 }

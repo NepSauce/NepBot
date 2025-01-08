@@ -21,16 +21,28 @@ public class CommandEvent extends ListenerAdapter{
     }
 
     public void onDadCommandReceived(@NotNull MessageReceivedEvent event){
-        if (splitMessage[2].equalsIgnoreCase("true" ) && dadBotMode == false){
+        if (splitMessage.length == 2){
+            if (dadBotMode){
+                event.getChannel().sendMessage("`Dad Bot Mode is enabled`").queue();
+            }
+            else{
+                event.getChannel().sendMessage("`Dad Bot Mode is disabled`").queue();
+            }
+        }
+        else if (splitMessage[2].equalsIgnoreCase("true" )){
             dadBotMode = true;
             event.getChannel().sendMessage("`Dad Bot Mode enabled.`").queue();
         }
-        else if (splitMessage[2].equalsIgnoreCase("false" ) && dadBotMode == true){
+        else if (splitMessage[2].equalsIgnoreCase("false" )){
             dadBotMode = false;
             event.getChannel().sendMessage("`Dad Bot Mode disabled.`").queue();
         }
         else{
-            event.getChannel().sendMessage("`Dad Bot Mode is already disabled/enabled.`").queue();
+            event.getChannel().sendMessage("`Sorry, I don't recognize that Command.`").queue();
         }
+    }
+    
+    public static Boolean getDadBotMode(){
+        return dadBotMode;
     }
 }
