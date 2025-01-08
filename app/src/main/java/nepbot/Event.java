@@ -1,13 +1,15 @@
 package nepbot;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class Event extends ListenerAdapter{
-    String[] splitMessage;
-    static Boolean dadBotMode = false;
+    public static String[] splitMessage;
     
     @SuppressWarnings("null")
     @Override
@@ -18,6 +20,11 @@ public class Event extends ListenerAdapter{
     
         String message = event.getMessage().getContentRaw();
         String messageLower = message.toLowerCase();
+        List<String> negativeWords = Arrays.asList("suck", "stupid", "dumb", "awful","trash", 
+        "garbage", "useless", "weak", "lame", "cringe", "pathetic", "toxic", "shit", "sucks", "gay", 
+        "ugly", "horrible", "disgusting", "awful", "ridiculous", "stupid", "annoying", "gay", "worthless", 
+        "fail", "dead", "screwed", "unreal", "unwanted", "unhelpful", "unvalued", "unnecessary", "bad", 
+        "ass");
     
         splitMessage = event.getMessage().getContentRaw().toLowerCase().split(" ");
     
@@ -25,16 +32,31 @@ public class Event extends ListenerAdapter{
             onRotReceived(event);
         }
     
-        else if (messageLower.contains("nep") && messageLower.contains("gay")) {
-            if (messageLower.contains("nep") && messageLower.contains("gay") && messageLower.contains("not")) {
-                if (messageLower.indexOf("nep") < messageLower.indexOf("not") && messageLower.indexOf("not") < messageLower.indexOf("gay")) {
-                    return;
+        else if (messageLower.contains("nep")){
+            boolean containsBadWord = false;
+
+            for (String badWord : negativeWords){
+                if (messageLower.contains(badWord)){
+                containsBadWord = true;
+                break;
                 }
             }
+
+            if (containsBadWord) {
+                if (messageLower.contains("not")){
+                    for (String badWord : negativeWords){
+                        if (messageLower.indexOf("nep") < messageLower.indexOf("not") 
+                        && messageLower.indexOf("not") < messageLower.indexOf(badWord)){
+                            return;
+                        }
+                    }
+                }
+
             onNegativeReceived(event);
+            }
         }
     
-        else if (splitMessage[0].contains("nep")){
+        else if (splitMessage[0].contains("nep") && splitMessage.length == 1){
             onNepReceived(event);
         }
     }
@@ -44,9 +66,7 @@ public class Event extends ListenerAdapter{
     }
     
     private void onNepReceived(@NotNull MessageReceivedEvent event){
-        if (splitMessage[0].equalsIgnoreCase("nep") && splitMessage.length == 1){
-            event.getChannel().sendMessage("Nep Nep").queue();
-        }
+        event.getChannel().sendMessage("Nep Nep").queue();  
     }
     
     private void onNegativeReceived(@NotNull MessageReceivedEvent event){
@@ -54,10 +74,4 @@ public class Event extends ListenerAdapter{
         String statement = NegativeStatement.sayNegative("NegativeStatements.txt", random);
         event.getChannel().sendMessage(statement).queue();
     }
-    
-    public static Boolean getDadMode(){
-        return dadBotMode;
-    }
-    
-
 }

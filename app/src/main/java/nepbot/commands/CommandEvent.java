@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 
 public class CommandEvent extends ListenerAdapter{
-    String[] splitMessage;
+    public static String[] splitMessage;
     static Boolean dadBotMode = false;
     
     @SuppressWarnings("null")
@@ -16,11 +16,11 @@ public class CommandEvent extends ListenerAdapter{
         splitMessage = event.getMessage().getContentRaw().toLowerCase().split(" ");
 
         if (splitMessage[0].contains("!nep") && splitMessage[1].equalsIgnoreCase("dadMode")){
-            onDadReceived(event);
+            onDadCommandReceived(event);
         }
     }
 
-    public void onDadReceived(@NotNull MessageReceivedEvent event){
+    public void onDadCommandReceived(@NotNull MessageReceivedEvent event){
         if (splitMessage[2].equalsIgnoreCase("true" ) && dadBotMode == false){
             dadBotMode = true;
             event.getChannel().sendMessage("`Dad Bot Mode enabled.`").queue();

@@ -3,10 +3,10 @@ package nepbot;
 public class ChatGPT{
     public static String generatePrompt(String prompt){
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "";
+        String apiKey;
+        FileHandler<String> keyHandling = new FileHandler<>();
+        apiKey = keyHandling.readSingleLine("ChatGPT.txt");
 
-        FileHandler<String> tokenHandling = new FileHandler<>();
-        apiKey = tokenHandling.readSingleLine("ChatGPT.txt");
         return "";
     }
 

@@ -33,28 +33,30 @@ public class FileHandler<T>{
         T randomLine = null;
         int lineCount = getLineCount(fileName);
 
-        try{
+        if (lineCount == 0) {
+            System.out.println("File Contents Are Empty");
+            return randomLine;  
+        }
+
+        try {
             File newFile = new File(fileName);
-            try (Scanner newReader = new Scanner(newFile)) {
-                if (lineCount > 0){
-                    int randomIndex = RandomSeed.RandomGenUsingSeed(seed);
-                    
-                    for (int i = 0; i <= randomIndex; i++){
-                        randomLine = (T) newReader.nextLine();
-                    }
+            try (Scanner newReader = new Scanner(newFile)){
+                int randomIndex = RandomSeed.RandomGenUsingSeed(lineCount);
+
+                for (int i = 0; i < randomIndex; i++){
+                    newReader.nextLine(); 
                 }
-                else{
-                    System.out.println("File Contents Are Empty");
+
+                if (newReader.hasNextLine()){
+                    randomLine = (T) newReader.nextLine();
                 }
             }
-            
         } 
         catch (FileNotFoundException e){
             System.out.println("File Was Not Found");
         }
 
         return randomLine;
-
     }
 
     public static int getLineCount(String fileName){

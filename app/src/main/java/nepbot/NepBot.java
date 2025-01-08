@@ -1,6 +1,5 @@
 package nepbot;
 
-
 import javax.security.auth.login.LoginException;
 
 import nepbot.commands.CommandEvent;
