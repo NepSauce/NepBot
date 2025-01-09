@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class Event extends ListenerAdapter{
     public static String[] splitMessage;
+    public static String message;
     
     @SuppressWarnings("null")
     @Override
@@ -19,14 +20,14 @@ public class Event extends ListenerAdapter{
             return;
         }
     
-        String message = event.getMessage().getContentRaw();
+        message = event.getMessage().getContentRaw();
         String messageLower = message.toLowerCase();
 
         List<String> negativeWords = Arrays.asList("suck", "stupid", "dumb", "awful","trash", 
         "garbage", "useless", "weak", "lame", "cringe", "pathetic", "toxic", "shit", "sucks", "gay", 
         "ugly", "horrible", "disgusting", "awful", "ridiculous", "stupid", "annoying", "worthless", 
         "fail", "dead", "screwed", "unreal", "unwanted", "unhelpful", "unvalued", "unnecessary", "bad", 
-        "ass");
+        "ass", "fuck");
         List<String> positiveWords = Arrays.asList("great", "good", "awesome", "amazing", "fantastic", 
         "nice", "wonderful", "excellent", "cool", "happy", "lovely", "positive", "friend", "supportive", 
         "kind", "help", "smart", "strong", "healthy", "beautiful", "chill", "outstanding", "remarkable", 
@@ -42,7 +43,7 @@ public class Event extends ListenerAdapter{
             BotStatement.onRotReceived(event);
         }
     
-        else if (messageLower.contains("nep")){
+        if (messageLower.contains("nep")){
             boolean containsBadWord = false;
             String negativeWord = null;
             boolean containsGoodWord = false;
@@ -86,11 +87,11 @@ public class Event extends ListenerAdapter{
             }
         }
         
-        else if (splitMessage[0].contains("nep") && splitMessage.length == 1){
+        else if (splitMessage[0].contains("nep")){
             BotStatement.onNepReceived(event);
         }
 
-        else if (dadCheck){
+        if (dadCheck){
             StringBuilder dadResponse = new StringBuilder("Hi ");
             int startIndex = splitMessage[1].contains("am") ? 2 : 1;
         
@@ -109,5 +110,13 @@ public class Event extends ListenerAdapter{
                 BotStatement.onDadReceived(event, dadResponse.toString());
             }
         }
+    }
+
+    public static String[] getSplitMessage(){
+        return splitMessage;
+    }
+
+    public static String getMessage(){
+        return message;
     }
 }
