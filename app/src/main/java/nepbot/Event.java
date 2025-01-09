@@ -30,7 +30,7 @@ public class Event extends ListenerAdapter{
         "ass", "fuck");
         List<String> positiveWords = Arrays.asList("great", "good", "awesome", "amazing", "fantastic", 
         "nice", "wonderful", "excellent", "cool", "happy", "lovely", "positive", "friend", "supportive", 
-        "kind", "help", "smart", "strong", "healthy", "beautiful", "chill", "outstanding", "remarkable", 
+        "kind", "smart", "strong", "healthy", "beautiful", "chill", "outstanding", "remarkable", 
         "impressive", "motivated", "thankful", "love", "fun", "peaceful", "grateful", "honest", "reliable", 
         "bright", "productive", "perfect");
 

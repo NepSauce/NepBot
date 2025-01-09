@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import nepbot.Event;
 import nepbot.commands.dad.DadCommand;
+import nepbot.commands.dad.HelpCommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -20,9 +21,13 @@ public class CommandEvent extends ListenerAdapter{
         }
 
         splitMessage = Event.getSplitMessage();
+        Boolean containsNep = splitMessage[0].contains("!nep");
 
-        if (splitMessage[0].contains("!nep") && splitMessage[1].equalsIgnoreCase("dadMode")){
+        if (containsNep && splitMessage[1].equalsIgnoreCase("dadMode")){
             DadCommand.onDadCommandReceived(event);
+        }
+        if (containsNep && splitMessage[1].equalsIgnoreCase("help")){
+            HelpCommand.onHelpCommandReceived(event);
         }
     }
     
