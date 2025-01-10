@@ -12,4 +12,8 @@ public class JoinCommand{
         guild.getAudioManager().closeAudioConnection();
     }
 
+    public static void akjshdkj(){
+        
+    }
+
 }
