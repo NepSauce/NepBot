@@ -87,7 +87,7 @@ public class Event extends ListenerAdapter{
             }
         }
         
-        else if (splitMessage[0].contains("nep")){
+        if (messageLower.equalsIgnoreCase("nep")){
             BotStatement.onNepReceived(event);
         }
 

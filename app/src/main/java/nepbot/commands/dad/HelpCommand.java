@@ -5,11 +5,20 @@ import org.jetbrains.annotations.NotNull;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class HelpCommand {
-    public static void onHelpCommandReceived(@NotNull MessageReceivedEvent event){
-        event.getChannel().sendMessage("**`List of Commands`**").queue();
-        event.getChannel().sendMessage("`!nep DadMode [True/False]:` Enables Dad Mode").queue();
-        event.getChannel().sendMessage("`!nep Start [Youtube Link]:` Joins Current Voice Channel").queue();
-        event.getChannel().sendMessage("`!nep [Play/Pause]:` Plays or Pauses Music").queue();
-        event.getChannel().sendMessage("`!nep Yeet`: Removes Nepmata from Voice Channel").queue();
+    public static void onHelpCommandReceived(@NotNull MessageReceivedEvent event) {
+        String helpMessage = """
+                **__Nepmata Command List__**
+                
+                **`!nep DadMode [True/False]:`** Toggle Dad Mode on or off.
+
+                **`!nep [Play/Pause]:`** Play or pause the current track.
+
+                **`!nep Start [Youtube Link]:`** Join your current voice channel and start playing music.
+
+                **`!nep Yeet:`** Remove Nepmata from the voice channel.
+
+                """;
+
+        event.getChannel().sendMessage(helpMessage).queue();
     }
 }
