@@ -37,7 +37,8 @@ public class Event extends ListenerAdapter{
     
         splitMessage = event.getMessage().getContentRaw().toLowerCase().split(" ");
 
-        boolean dadCheck = ((splitMessage[0].contains("i") && splitMessage[1].contains("am")) || (splitMessage[0].contains("i'm")) || splitMessage[0].contains("im"));
+        boolean dadCheck = ((splitMessage[0].contains("i") && splitMessage[1].contains("am")) 
+        || (splitMessage[0].contains("i'm")) || splitMessage[0].contains("im"));
     
         if (message.toLowerCase().contains("rot")){
             BotStatement.onRotReceived(event);

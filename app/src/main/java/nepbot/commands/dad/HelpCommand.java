@@ -11,9 +11,11 @@ public class HelpCommand {
                 
                 **`!nep DadMode [True/False]:`** Toggle Dad Mode on or off.
 
+                **`!nep Grab:`** Join your current voice channel.
+
                 **`!nep [Play/Pause]:`** Play or pause the current track.
 
-                **`!nep Start [Youtube Link]:`** Join your current voice channel and start playing music.
+                **`!nep Find [Youtube Link]:`** Start playing the Youtube video.
 
                 **`!nep Yeet:`** Remove Nepmata from the voice channel.
 
