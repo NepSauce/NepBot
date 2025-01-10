@@ -11,9 +11,4 @@ public class JoinCommand{
     public static void leaveChannel(Guild guild){
         guild.getAudioManager().closeAudioConnection();
     }
-
-    public static void akjshdkj(){
-        
-    }
-
 }
