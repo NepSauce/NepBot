@@ -11,34 +11,37 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
+import net.dv8tion.jda.api.audio.AudioSendHandler;
 import net.dv8tion.jda.api.entities.Guild;
 
 public class PlayerManager{
     private static PlayerManager INSTANCE;
-    private final Map<Long, MusicManager> musicMap = new HashMap<>();
-    private final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+    @SuppressWarnings("FieldMayBeFinal")
+    private Map<Long, MusicManager> guildMusicManagers = new HashMap<>();
+    @SuppressWarnings("FieldMayBeFinal")
+    private AudioPlayerManager audioPlayerManager = new DefaultAudioPlayerManager();
 
     private PlayerManager(){
-        AudioSourceManagers.registerLocalSource(playerManager);
-        AudioSourceManagers.registerRemoteSources(playerManager);
+        AudioSourceManagers.registerLocalSource(audioPlayerManager);
+        AudioSourceManagers.registerRemoteSources(audioPlayerManager);
     }
 
     @SuppressWarnings("unused")
-    public MusicManager getMusicManager(Guild guild){
-        return musicMap.computeIfAbsent(guild.getIdLong(), (guildId) -> {
-            MusicManager manager = new MusicManager(playerManager);
-            guild.getAudioManager().setSendingHandler(manager.getAudioForwarder());
-            return manager;
+    public MusicManager getGuildMusicManager(Guild guild){
+        return guildMusicManagers.computeIfAbsent(guild.getIdLong(), (guildId) -> {
+            MusicManager musicManager = new MusicManager(audioPlayerManager);
+            guild.getAudioManager().setSendingHandler((AudioSendHandler) musicManager.getAudioForwarder());
+            return musicManager;
         });
     }
 
     public void play(Guild guild, String trackURL){
-        MusicManager musicManager = getMusicManager(guild);
-        playerManager.loadItemOrdered(musicManager, trackURL, new AudioLoadResultHandler(){
+        MusicManager guildMusicManager = getGuildMusicManager(guild);
+        audioPlayerManager.loadItemOrdered(guildMusicManager, trackURL, new AudioLoadResultHandler(){
 
             @Override
             public void trackLoaded(AudioTrack track){
-                musicManager.getAudioScheduler().queue(track);
+                guildMusicManager.getTrackScheduler().queue(track);
             }
 
             @Override

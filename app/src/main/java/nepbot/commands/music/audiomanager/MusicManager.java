@@ -4,21 +4,21 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 
 public class MusicManager {
-    private final YTForwarder forwarder;
-    private final Scheduler scheduler;
+    private final AudioForwarder forwarder;
+    private final TrackScheduler scheduler;
 
     public MusicManager(AudioPlayerManager manager){
         AudioPlayer player = manager.createPlayer();
-        scheduler = new Scheduler(player);
+        scheduler = new TrackScheduler(player);
         player.addListener(scheduler);
-        forwarder = new YTForwarder(player);
+        forwarder = new AudioForwarder(player);
     }
 
-    public Scheduler getAudioScheduler(){
+    public TrackScheduler getTrackScheduler(){
         return scheduler;
     }
 
-    public YTForwarder getAudioForwarder(){
+    public AudioForwarder getAudioForwarder(){
         return forwarder;
     }
 }

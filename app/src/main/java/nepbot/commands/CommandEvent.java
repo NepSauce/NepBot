@@ -21,13 +21,13 @@ public class CommandEvent extends ListenerAdapter{
     
     @SuppressWarnings({ "null", "unused" })
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        if (event.getAuthor().isBot()) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event){
+        if (event.getAuthor().isBot()){
             return;
         }
     
         splitMessage = Event.getSplitMessage(); // Ensure this returns the correct data.
-        if (splitMessage == null || splitMessage.length < 2) {
+        if (splitMessage == null || splitMessage.length < 2){
             event.getChannel().sendMessage("Nep Thinks You Should Provide a Command After `!nep`.").queue();
             return;
         }
@@ -38,8 +38,8 @@ public class CommandEvent extends ListenerAdapter{
                 ? (VoiceChannel) event.getMember().getVoiceState().getChannel()
                 : null;
     
-        if (splitMessage[0].contains("!nep")) {
-            switch (splitMessage[1].toLowerCase()) {
+        if (splitMessage[0].contains("!nep")){
+            switch (splitMessage[1].toLowerCase()){
                 case "dadmode" -> DadCommand.onDadCommandReceived(event);
                 case "help" -> HelpCommand.onHelpCommandReceived(event);
                 case "grab" -> {
@@ -51,15 +51,16 @@ public class CommandEvent extends ListenerAdapter{
                     }
                 }
                 case "find" -> {
-                    if (splitMessage.length < 3) {
+                    if (splitMessage.length < 3){
                         event.getChannel().sendMessage("Nep Thinks You Should Provide a Track URL.").queue();
                         return;
                     }
                     String trackURL = splitMessage[2];
-                    if (channel != null) {
+                    if (channel != null){
                         PlayerManager playerManager = PlayerManager.getPlayer();
                         playerManager.play(guild, trackURL);
-                    } else {
+                    } 
+                    else{
                         event.getChannel().sendMessage("Nep Thinks You Should Join a Voice Channel First.").queue();
                     }
                 }

@@ -9,12 +9,12 @@ import com.sedmelluq.discord.lavaplayer.track.playback.MutableAudioFrame;
 
 import net.dv8tion.jda.api.audio.AudioSendHandler;
 
-public class YTForwarder implements AudioSendHandler{
+public class AudioForwarder implements AudioSendHandler{
     private final AudioPlayer player;
     private final ByteBuffer buffer = ByteBuffer.allocate(1024);
     private final MutableAudioFrame frame = new MutableAudioFrame();
 
-    public YTForwarder(AudioPlayer player){
+    public AudioForwarder(AudioPlayer player){
         this.player = player;
         frame.setBuffer(buffer);
     }
@@ -27,7 +27,7 @@ public class YTForwarder implements AudioSendHandler{
     @Nullable
     @Override
     public ByteBuffer provide20MsAudio() {
-        return ByteBuffer.wrap(frame.getData());
+        return buffer.flip();
     }
 
     @Override
