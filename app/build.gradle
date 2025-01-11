@@ -15,6 +15,12 @@ repositories {
     mavenCentral()
 }
 
+repositories {
+  maven {
+    url 'https://m2.dv8tion.net/releases'
+  }
+}
+
 dependencies {
     implementation("net.dv8tion:JDA:5.2.2") { // replace $version with the latest version
       // Optionally disable audio natives to reduce jar size by excluding `opus-java`
@@ -23,6 +29,10 @@ dependencies {
       // Kotlin DSL:
       // exclude(module="opus-java")
     }
+}
+
+dependencies {
+  implementation 'com.sedmelluq:lavaplayer:1.3.77'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

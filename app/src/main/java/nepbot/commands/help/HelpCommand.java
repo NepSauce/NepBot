@@ -1,4 +1,4 @@
-package nepbot.commands.dad;
+package nepbot.commands.help;
 
 import org.jetbrains.annotations.NotNull;
 
