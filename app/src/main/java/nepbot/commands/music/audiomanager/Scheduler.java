@@ -8,11 +8,11 @@ import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
-public class YTPlayer extends AudioEventAdapter{
+public class Scheduler extends AudioEventAdapter{
     private final AudioPlayer player;
     private final BlockingQueue<AudioTrack> queue = new LinkedBlockingDeque<>();
 
-    public YTPlayer(AudioPlayer player){
+    public Scheduler(AudioPlayer player){
         this.player = player;
     }
 
