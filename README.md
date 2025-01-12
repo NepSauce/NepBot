@@ -1,8 +1,33 @@
-# Nepmata
-Experimental Discord Bot
+# Nepmata Bot
 
-# Features
-Music Command Is Still Under Progress
+Nepmata is a fun bot for Discord that responds to commands and interacts in your voice channels. It has a variety of features like Dad Mode, Statement responsiveness and playing YouTube videos. **Please note that the music functionality is still a work in progress and does not currently play music.** This bot is designed to add some lighthearted fun to your server!
+
+## Features
+
+- **Dad Mode**: Toggle Dad Mode on or off for some dad-like responses.  
+  Command: `!nep dadmode [True/False]`
+
+- **Grab**: Joins your current voice channel.  
+  Command: `!nep grab`
+
+- **Play/Pause**: Play or pause the current track in the voice channel.  
+  Command: `!nep [Play/Pause]` *(Music functionality is in progress and does not currently work.)*
+
+- **Find YouTube Link**: Play a YouTube video in the voice channel.  
+  Command: `!nep find [Youtube Link]` *(Music functionality is in progress and does not currently work.)*
+
+- **Yeet**: Remove Nepmata from the voice channel.  
+  Command: `!nep yeet`
+
+## Command List
+
+- **!nep DadMode [True/False]**: Toggle Dad Mode on or off.  
+- **!nep Grab**: Join the current voice channel.  
+- **!nep [Play/Pause]**: Play or pause the track. *(Music functionality is in progress and does not currently work.)*
+- **!nep Find [Youtube Link]**: Play a YouTube video in the voice channel. *(Music functionality is in progress and does not currently work.)*
+- **!nep Yeet**: Disconnect Nepmata from the voice channel.
+
+## Examples
 
 ![{91F86B1E-33A3-4117-9FC2-12D8D5A25D58}](https://github.com/user-attachments/assets/f97aff6a-89f4-4fa2-b086-f1a13c870d01)
 
