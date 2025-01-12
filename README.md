@@ -1,6 +1,6 @@
 # Nepmata Bot
 
-Nepmata is a fun bot for Discord that responds to commands and interacts in your voice channels. It has a variety of features like Dad Mode, Statement responsiveness and playing YouTube videos. **Please note that the music functionality is still a work in progress and does not currently play music.** This bot is designed to add some lighthearted fun to your server!
+Nepmata is a fun bot for Discord that responds to commands and interacts in your voice channels. It has a variety of features like Dad Mode, Statement responsiveness and playing YouTube videos. **Please note that the music functionality is still a work in progress and does not currently play music.** This bot is designed to add some lighthearted fun to your server! Can detect a variety of negative and positive words.
 
 ## Features
 
