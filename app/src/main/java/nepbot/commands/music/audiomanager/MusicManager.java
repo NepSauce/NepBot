@@ -9,6 +9,11 @@ public class MusicManager {
 
     public MusicManager(AudioPlayerManager manager){
         AudioPlayer player = manager.createPlayer();
+
+        if (player == null){
+            throw new IllegalStateException("AudioPlayer could not be created.");
+        }
+        
         scheduler = new TrackScheduler(player);
         player.addListener(scheduler);
         forwarder = new AudioForwarder(player);

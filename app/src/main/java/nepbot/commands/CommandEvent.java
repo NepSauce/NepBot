@@ -27,7 +27,8 @@ public class CommandEvent extends ListenerAdapter{
         }
     
         splitMessage = Event.getSplitMessage(); // Ensure this returns the correct data.
-        if (splitMessage == null || splitMessage.length < 2){
+
+        if (splitMessage.length < 2 && splitMessage[0].equalsIgnoreCase("!nep")){
             event.getChannel().sendMessage("Nep Thinks You Should Provide a Command After `!nep`.").queue();
             return;
         }
@@ -43,12 +44,8 @@ public class CommandEvent extends ListenerAdapter{
                 case "dadmode" -> DadCommand.onDadCommandReceived(event);
                 case "help" -> HelpCommand.onHelpCommandReceived(event);
                 case "grab" -> {
-                    if (channel != null) {
-                        MoveCommand.joinChannel(channel, guild);
-                        event.getChannel().sendMessage("Nep Joined The Current Voice Channel.").queue();
-                    } else {
-                        event.getChannel().sendMessage("Nep Thinks That Command Is Invalid.").queue();
-                    }
+                    MoveCommand.joinChannel(channel, guild);
+                    event.getChannel().sendMessage("Nep Joined The Current Voice Channel.").queue();
                 }
                 case "find" -> {
                     if (splitMessage.length < 3){

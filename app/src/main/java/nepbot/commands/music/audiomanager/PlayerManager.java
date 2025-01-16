@@ -49,11 +49,13 @@ public class PlayerManager{
             }
 
             @Override
-            public void noMatches() {
+            public void noMatches(){
+                System.out.println("No matches found for the track URL.");
             }
 
             @Override
             public void loadFailed(FriendlyException exception){
+                System.out.println("Failed to load track: " + exception.getMessage());
             }
 
         });
